@@ -94,8 +94,6 @@ var finances = [
 
 // Use the finances.length to calculate the number of months.
 var numberOfMonths = finances.length;
-console.log(numberOfMonths); //it works!
-
 
 // Calculate the net total amount of Profit/Losses over the entire period.
 // * var netTotal = total amount of Profit/Losses
@@ -105,7 +103,6 @@ var netTotal = 0;
 for (var i = 0; i < numberOfMonths; i++) {
   netTotal += finances[i][1]; // Add the second element of each array (Profit/Loss)
 }
-console.log(netTotal);
 
 // Calculate the average of the **changes** in Profit/Losses over the entire period.
 //   * Track what the total change in Profit/Losses are from month to month and then find the average.
@@ -121,6 +118,20 @@ console.log(netTotal);
 // * to calculate average. average = Total/(Number of months - 1)
 // * var total = total amount of changes
 
+var changes = [];
+var average = 0;
+var totalChange = 0;
+
+for(var i=1; i < numberOfMonths; i++){
+  var currentMonth = finances[i];
+  var previousMonth = finances[i-1];
+  var monthlyChange = currentMonth[1] - previousMonth[1];
+  totalChange += monthlyChange;
+  changes.push(monthlyChange);
+}
+
+average = totalChange / (numberOfMonths - 1);
+
 // Calculate the greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
 // * var greatestIncrease
 // * calculate the "change" (change = currentMonth - previousMonth), for each element in finances array.
@@ -133,14 +144,42 @@ console.log(netTotal);
 // * compare first one with second, and if value is smaller update the value of greatestDecrease, then compare this value with next one, and so on.
 // * loop through changes array, and compare second field of each element.
 
+var greatestIncrease = { date: "", amount: 0 };
+var greatestDecrease = { date: "", amount: totalChange };
+
+for (var i = 1; i < numberOfMonths; i++) {
+  var currentMonth = finances[i];
+  var previousMonth = finances[i - 1];
+  var monthlyChange = currentMonth[1] - previousMonth[1];
+
+  // Check for greatestIncrease
+  if (monthlyChange > greatestIncrease.amount) {
+    greatestIncrease.date = currentMonth[0];
+    greatestIncrease.amount = monthlyChange;
+  }
+
+  // Check for greatestDecrease
+  if (monthlyChange < greatestDecrease.amount) {
+    greatestDecrease.date = currentMonth[0];
+    greatestDecrease.amount = monthlyChange;
+  }
+}
+
 // Create the result:  resulting analysis should look similar to the following:
 
 //   ```
 //   Financial Analysis
+console.log("Financial Analysis")
 //   ----------------
+console.log("----------------")
 //   Total Months: 86 --> var numberOfMonth
+console.log("Total Months: " + numberOfMonths); 
 //   Total: $38382578 --> var netTotal
+console.log("Total: $" + netTotal);
 //   Average Change: -2315.12 --> var average.toFixed(2) round the average to two decimal places
+console.log("Average Change: " + average.toFixed(2));
 //   Greatest Increase in Profits/Losses: Feb-2012 ($1926159) --> var greatestIncrease; (february - january) 1170593 -(-755566) = 1926159
+console.log("Greatest Increase in Profits/Losses: " + greatestIncrease.date, "($" + greatestIncrease.amount + ")");
 //   Greatest Decrease in Profits/Losses: Sep-2013 ($-2196167) --> var greatestDecrease; (september - august) -1196225 - 999942 = -2196167
+console.log("Greatest Decrease in Profits/Losses: " + greatestDecrease.date, "($" + greatestDecrease.amount + ")");
 //   ```
