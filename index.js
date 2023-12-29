@@ -90,11 +90,22 @@ var finances = [
 // The dataset composed of arrays with two fields, Date and Profit/Losses provided.
 
 // Calculate the total number of months included in the dataset.
-// * var numberOfMonth = finances.length
+// * var numberOfMonths = finances.length
+
+// Use the finances.length to calculate the number of months.
+var numberOfMonths = finances.length;
+console.log(numberOfMonths); //it works!
+
 
 // Calculate the net total amount of Profit/Losses over the entire period.
 // * var netTotal = total amount of Profit/Losses
 // * iterate the finances array, add second element (profit/losses) to netTotal
+
+var netTotal = 0;
+for (var i = 0; i < numberOfMonths; i++) {
+  netTotal += finances[i][1]; // Add the second element of each array (Profit/Loss)
+}
+console.log(netTotal);
 
 // Calculate the average of the **changes** in Profit/Losses over the entire period.
 //   * Track what the total change in Profit/Losses are from month to month and then find the average.
