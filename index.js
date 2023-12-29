@@ -87,37 +87,16 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-// The dataset composed of arrays with two fields, Date and Profit/Losses provided.
-
 // Calculate the total number of months included in the dataset.
-// * var numberOfMonths = finances.length
-
-// Use the finances.length to calculate the number of months.
 var numberOfMonths = finances.length;
 
 // Calculate the net total amount of Profit/Losses over the entire period.
-// * var netTotal = total amount of Profit/Losses
-// * iterate the finances array, add second element (profit/losses) to netTotal
-
 var netTotal = 0;
 for (var i = 0; i < numberOfMonths; i++) {
   netTotal += finances[i][1]; // Add the second element of each array (Profit/Loss)
 }
 
 // Calculate the average of the **changes** in Profit/Losses over the entire period.
-//   * Track what the total change in Profit/Losses are from month to month and then find the average.
-//   * (`Total/(Number of months - 1)`)
-//
-// * create the new array changes
-// * var average
-//
-// * to calculate changes we need currentMonth and previousMonth.
-// * var change = currentMonth - previousMonth
-// * collect all changes in array change.
-//
-// * to calculate average. average = Total/(Number of months - 1)
-// * var total = total amount of changes
-
 var changes = [];
 var average = 0;
 var totalChange = 0;
@@ -132,17 +111,7 @@ for(var i=1; i < numberOfMonths; i++){
 
 average = totalChange / (numberOfMonths - 1);
 
-// Calculate the greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
-// * var greatestIncrease
-// * calculate the "change" (change = currentMonth - previousMonth), for each element in finances array.
-// * compare first one with second, and if value is bigger update the value of greatestIncrease, then compare this value with next one, and so on.
-// * loop through changes array, and compare second field of each element.
-
-// Calculate the greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
-// * var greatestDecrease
-// * calculate the "change" (change = currentMonth - previousMonth), for each element in finances array.
-// * compare first one with second, and if value is smaller update the value of greatestDecrease, then compare this value with next one, and so on.
-// * loop through changes array, and compare second field of each element.
+// Calculate the greatest increase/decrease in Profit/Losses (date and difference in the amounts) over the entire period.
 
 var greatestIncrease = { date: "", amount: 0 };
 var greatestDecrease = { date: "", amount: totalChange };
@@ -165,7 +134,7 @@ for (var i = 1; i < numberOfMonths; i++) {
   }
 }
 
-// Create the result:  resulting analysis should look similar to the following:
+// Create the result
 
 //   ```
 //   Financial Analysis
