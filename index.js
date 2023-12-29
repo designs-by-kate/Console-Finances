@@ -86,3 +86,50 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+// The dataset composed of arrays with two fields, Date and Profit/Losses provided.
+
+// Calculate the total number of months included in the dataset.
+// * var numberOfMonth = finances.length
+
+// Calculate the net total amount of Profit/Losses over the entire period.
+// * var netTotal = total amount of Profit/Losses
+// * iterate the finances array, add second element (profit/losses) to netTotal
+
+// Calculate the average of the **changes** in Profit/Losses over the entire period.
+//   * Track what the total change in Profit/Losses are from month to month and then find the average.
+//   * (`Total/(Number of months - 1)`)
+//
+// * create the new array changes
+// * var average
+//
+// * to calculate changes we need currentMonth and previousMonth.
+// * var change = currentMonth - previousMonth
+// * collect all changes in array change.
+//
+// * to calculate average. average = Total/(Number of months - 1)
+// * var total = total amount of changes
+
+// Calculate the greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
+// * var greatestIncrease
+// * calculate the "change" (change = currentMonth - previousMonth), for each element in finances array.
+// * compare first one with second, and if value is bigger update the value of greatestIncrease, then compare this value with next one, and so on.
+// * loop through changes array, and compare second field of each element.
+
+// Calculate the greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
+// * var greatestDecrease
+// * calculate the "change" (change = currentMonth - previousMonth), for each element in finances array.
+// * compare first one with second, and if value is smaller update the value of greatestDecrease, then compare this value with next one, and so on.
+// * loop through changes array, and compare second field of each element.
+
+// Create the result:  resulting analysis should look similar to the following:
+
+//   ```
+//   Financial Analysis
+//   ----------------
+//   Total Months: 86 --> var numberOfMonth
+//   Total: $38382578 --> var netTotal
+//   Average Change: -2315.12 --> var average.toFixed(2) round the average to two decimal places
+//   Greatest Increase in Profits/Losses: Feb-2012 ($1926159) --> var greatestIncrease; (february - january) 1170593 -(-755566) = 1926159
+//   Greatest Decrease in Profits/Losses: Sep-2013 ($-2196167) --> var greatestDecrease; (september - august) -1196225 - 999942 = -2196167
+//   ```
